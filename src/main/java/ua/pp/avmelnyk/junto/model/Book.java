@@ -9,13 +9,16 @@ public class Book {
     @Id @GeneratedValue
     @Column(name = "BOOK_ID")
     private Long bookID;
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "AUTHOR")
     private String author;
+    @Column(name = "ISBN")
     private Long ISBN;
+    @Column(name = "GENRE")
     private String genre;
 
     @ManyToMany
-    @JoinColumn(name = "USER_ID")
     private List<User> owners;
 
     public Book() {
