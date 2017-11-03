@@ -1,15 +1,33 @@
 package ua.pp.avmelnyk.junto.model;
 
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "USERS")
 public class User {
+    @Id @GeneratedValue
+    @Column(name = "USER_ID")
     private Long userID;
+
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "FIRSTNAME")
     private String firstName;
+
+    @Column(name = "LASTNAME")
     private String lastName;
+
+    @Column(name = "EMAIL")
     private String email;
-    private List<Book> bookList;
+
+    @ManyToMany
+    @JoinColumn(name = "BOOK_ID")
+   private List<Book> bookList;
 
     public User() {
     }
