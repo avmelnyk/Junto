@@ -1,4 +1,4 @@
-package ua.pp.avmelnyk.junto.config;
+package ua.pp.avmelnyk.junto.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

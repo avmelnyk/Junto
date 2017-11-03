@@ -1,4 +1,4 @@
-package ua.pp.avmelnyk.junto.models;
+package ua.pp.avmelnyk.junto.model;
 
 import java.util.List;
 
@@ -11,11 +11,18 @@ public class Book {
     private String genre;
     private List<User> owners;
 
+    public Book() {
+    }
+
     public Book(String name, String author, Long ISBN, String genre) {
         this.name = name;
         this.author = author;
         this.ISBN = ISBN;
         this.genre = genre;
+    }
+
+    public void setBookID(Long bookID) {
+        this.bookID = bookID;
     }
 
     public Long getBookID() {
