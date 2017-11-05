@@ -12,16 +12,15 @@
 </head>
 <body>
     <h1>Books</h1>
-    <li>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-        <ul>Book</ul>
-    </li>
+    <ul>
+        <li>Book</li>
+        <li>Book</li>
+        <li>Book</li>
+        <li>Book</li>
+        <li>Book</li>
+        <li>Book</li>
+        <li>Book</li>
+        <li>Book</li>
+    </ul>
 </body>
 </html>

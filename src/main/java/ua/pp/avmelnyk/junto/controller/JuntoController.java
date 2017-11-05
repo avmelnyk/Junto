@@ -16,4 +16,10 @@ public class JuntoController {
         //model.addAttribute(user);
         return "user";
     }
+
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    public String getBooks(){
+        return"books";
+    }
+
 }
