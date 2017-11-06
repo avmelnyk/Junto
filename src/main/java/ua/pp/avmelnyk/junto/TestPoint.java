@@ -6,7 +6,6 @@ import ua.pp.avmelnyk.junto.DAO.UserDAOImpl;
 import ua.pp.avmelnyk.junto.model.Book;
 import ua.pp.avmelnyk.junto.model.User;
 import ua.pp.avmelnyk.junto.persistence.HibernateUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
