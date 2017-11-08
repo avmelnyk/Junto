@@ -26,6 +26,13 @@ public class JuntoController {
         return "user";
     }
 
+    @RequestMapping(value = "registration", method = RequestMethod.GET)
+    public String getRegistrationForm(Model model){
+        User user = new User();
+        model.addAttribute(user);
+        return "registration";
+    }
+
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public String getBooks(){
         return"books";

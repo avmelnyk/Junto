@@ -6,21 +6,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Junto</title>
 </head>
 <body>
     <h1>Books</h1>
-    <ul>
-        <li>Book</li>
-        <li>Book</li>
-        <li>Book</li>
-        <li>Book</li>
-        <li>Book</li>
-        <li>Book</li>
-        <li>Book</li>
-        <li>Book</li>
-    </ul>
+    <c:forEach var="book"  items="${userList}">
+        <tr>
+            <td><c:out value="${book.name}"/></td>
+            <td><c:out value="${book.author}"/></td>
+            <td><c:out value="${book.genre}"/></td>
+            <td><c:out value="${book.ISBN}"/></td>
+        </tr>
+    </c:forEach>
 </body>
 </html>
