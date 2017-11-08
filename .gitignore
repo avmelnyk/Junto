@@ -1,3 +1,4 @@
 target/
 .idea/
 junto.iml
+/pom.xml
