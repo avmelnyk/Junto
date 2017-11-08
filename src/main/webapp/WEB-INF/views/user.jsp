@@ -17,6 +17,10 @@
     <h3> ${user.firstName} ${user.lastName}</h3>
     <h3>Books</h3>
     <table>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>ISBN</th>
         <c:forEach var="book"  items="${user.bookList}">
             <tr>
                 <td><c:out value="${book.name}"/></td>
