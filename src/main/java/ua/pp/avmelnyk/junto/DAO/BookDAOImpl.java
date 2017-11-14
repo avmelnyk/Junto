@@ -3,6 +3,8 @@ package ua.pp.avmelnyk.junto.DAO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import ua.pp.avmelnyk.junto.model.Book;
+import ua.pp.avmelnyk.junto.model.User;
+
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO{
@@ -13,16 +15,17 @@ public class BookDAOImpl implements BookDAO{
         this.session = session;
     }
 
-    public void createBook(String name, String author, Long ISBN, String genre) {
+    public Long createBook(Book book) {
         try {
             Transaction tx = session.beginTransaction();
-            session.save(new Book(name, author,ISBN, genre));
+            Long book_id = (Long)session.save(book);
             tx.commit();
-
+            return book_id;
         }
         catch (RuntimeException e){
             session.getTransaction().rollback();
         }
+        return null;
     }
 
     public Book getBook(Long book_id) {
@@ -34,7 +37,8 @@ public class BookDAOImpl implements BookDAO{
 
     public void updateBook(Book book) {
         Transaction tx = session.beginTransaction();
-        session.update(book);
+        Book merged = (Book)session.merge(book);
+        session.saveOrUpdate(merged);
         tx.commit();
 
     }
