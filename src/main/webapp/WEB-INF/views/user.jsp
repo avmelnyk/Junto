@@ -14,7 +14,9 @@
 </head>
 <body>
     <h2>Username: ${user.username} </h2>
+    <a href="/edituser/${user.userID}">Edit</a>
     <h3> ${user.firstName} ${user.lastName}</h3>
+    <h3>Email: ${user.email}</h3>
     <h3>Books</h3>
     <table>
         <th>Name</th>

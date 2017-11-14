@@ -35,11 +35,19 @@ public class JuntoController {
     }
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String createNewUser(@ModelAttribute("user") User user){
-        System.out.println(user.toString());
         Long user_ID = userService.createUser(user);
-        System.out.println(user_ID);
         return "redirect:/user/"+user_ID.toString();
-
+    }
+    @RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
+    public String editUser(@PathVariable("id")Long userID, Model model){
+        User user = userService.getUser(userID);
+        model.addAttribute(user);
+        return "editUser";
+    }
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
+    public String editUser(@ModelAttribute("user") User user){
+        userService.updateUser(user);
+        return "redirect:/user/"+user.getUserID().toString();
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
