@@ -13,15 +13,17 @@ public class UserDAOImpl implements UserDAO{
         this.session = session;
     }
 
-    public void createUser(String username, String password, String firstname, String lastname, String email) {
+    public Long createUser(User user) {
         try {
             Transaction tx = session.beginTransaction();
-            session.save(new User(username, password, firstname, lastname, email));
+            Long user_id = (Long) session.save(user);
             tx.commit();
+            return user_id;
         }
         catch (RuntimeException e){
             session.getTransaction().rollback();
         }
+        return null;
     }
 
     public User getUser(Long user_id) {

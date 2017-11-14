@@ -19,8 +19,9 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    public void createUser(String username, String password, String firstname, String lastname, String email) {
-        this.userDAO.createUser(username, password, firstname, lastname, email);
+    public Long createUser(User user) {
+        return  this.userDAO.createUser(user);
+
     }
 
     public User getUser(Long user_id) {

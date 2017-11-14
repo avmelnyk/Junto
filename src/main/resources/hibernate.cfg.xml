@@ -12,6 +12,7 @@
         <property name="hibernate.connection.password">test123</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
+        <property name="connection.autocommit">true</property>
         <mapping class="ua.pp.avmelnyk.junto.model.User"></mapping>
         <mapping class="ua.pp.avmelnyk.junto.model.Book"></mapping>
     </session-factory>

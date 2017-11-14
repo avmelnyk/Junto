@@ -3,6 +3,7 @@ package ua.pp.avmelnyk.junto.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,11 +27,19 @@ public class JuntoController {
         return "user";
     }
 
-    @RequestMapping(value = "registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegistrationForm(Model model){
         User user = new User();
         model.addAttribute(user);
         return "registration";
+    }
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public String createNewUser(@ModelAttribute("user") User user){
+        System.out.println(user.toString());
+        Long user_ID = userService.createUser(user);
+        System.out.println(user_ID);
+        return "redirect:/user/"+user_ID.toString();
+
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)

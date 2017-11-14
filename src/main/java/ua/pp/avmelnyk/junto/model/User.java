@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USERS")
 public class User {
-    @Id @GeneratedValue
+    @Id @GeneratedValue()
     @Column(name = "USER_ID")
     private Long userID;
 

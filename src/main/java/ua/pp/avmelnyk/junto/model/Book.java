@@ -17,7 +17,6 @@ public class Book {
     private Long ISBN;
     @Column(name = "GENRE")
     private String genre;
-
     @ManyToMany
     private List<User> owners;
 

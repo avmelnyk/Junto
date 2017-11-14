@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-     void createUser(String username, String password, String firstname, String lastname, String email);
+     Long createUser(User user);
 
      User getUser(Long user_id);
 
