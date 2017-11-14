@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ua.pp.avmelnyk.junto.DAO.BookServiceImpl;
 import ua.pp.avmelnyk.junto.DAO.UserServiceImpl;
 import ua.pp.avmelnyk.junto.model.Book;
 import ua.pp.avmelnyk.junto.model.User;
 
+import java.util.List;
+
 @Controller
 public class JuntoController {
     private UserServiceImpl userService;
+    private BookServiceImpl bookService;
 
     @Autowired
-    public JuntoController(UserServiceImpl userService) {
+    public JuntoController(UserServiceImpl userService, BookServiceImpl bookService) {
         this.userService = userService;
+        this.bookService = bookService;
     }
 
     @RequestMapping(value = "/user/{id}",method = RequestMethod.GET)
@@ -51,7 +56,9 @@ public class JuntoController {
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public String getBooks(){
+    public String getBooks(Model model){
+        List<Book> bookList = bookService.listBooks();
+        model.addAttribute(bookList);
         return"books";
     }
 

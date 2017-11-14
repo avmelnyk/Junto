@@ -14,7 +14,8 @@
 </head>
 <body>
     <h1>Books</h1>
-    <c:forEach var="book"  items="${userList}">
+    <table>
+    <c:forEach var="book"  items="${bookList}">
         <tr>
             <td><c:out value="${book.name}"/></td>
             <td><c:out value="${book.author}"/></td>
@@ -22,5 +23,6 @@
             <td><c:out value="${book.ISBN}"/></td>
         </tr>
     </c:forEach>
+    </table>
 </body>
 </html>
