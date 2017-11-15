@@ -25,13 +25,8 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "USER_BOOK",
-            joinColumns = { @JoinColumn(name = "USER_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "BOOK_ID") }
-    )
-   private List<Book> bookList;
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="owners")
+    private List<Book> bookList;
 
     public User() {
     }

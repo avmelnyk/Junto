@@ -17,7 +17,12 @@ public class Book {
     private Long ISBN;
     @Column(name = "GENRE")
     private String genre;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "USER_BOOK",
+            joinColumns = { @JoinColumn(name = "BOOK_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "USER_ID") }
+    )
     private List<User> owners;
 
     public Book() {
@@ -76,5 +81,17 @@ public class Book {
 
     public void setOwners(List<User> owners) {
         this.owners = owners;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookID=" + bookID +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", ISBN=" + ISBN +
+                ", genre='" + genre + '\'' +
+                ", owners=" + owners +
+                '}';
     }
 }
