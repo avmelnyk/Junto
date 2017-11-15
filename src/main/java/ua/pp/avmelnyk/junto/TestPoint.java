@@ -2,7 +2,7 @@ package ua.pp.avmelnyk.junto;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import ua.pp.avmelnyk.junto.DAO.UserDAOImpl;
+import ua.pp.avmelnyk.junto.DAO.*;
 import ua.pp.avmelnyk.junto.model.Book;
 import ua.pp.avmelnyk.junto.model.User;
 import ua.pp.avmelnyk.junto.persistence.HibernateUtil;
@@ -11,28 +11,21 @@ import java.util.List;
 
 public class TestPoint {
     public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        //UserDAOImpl userDAO = new UserDAOImpl(session);
-        Transaction tx = session.beginTransaction();
-        User user = new User("avmelnyk", "password", "Andrii","Melnyk","email");
-        List<Book> bookList = new ArrayList<Book>();
-        bookList.add(new Book("Harry Potter", "J.K. Rowling", new Long(123123123), "fantasy"));
+        UserService userService = new UserServiceImpl();
+        BookService  bookService = new BookServiceImpl();
+        /*User user = new User("username", "firstname", "lastname", "email", "password");
+        Book book  = new Book("Harry Potter","J. K. Rowling", new Long(1233253), "fantasy");
+        List<Book>bookList = new ArrayList<Book>();
+        bookList.add(book);
+        List<User>ownerslist = new ArrayList<User>();
+        ownerslist.add(user);
+        book.setOwners(ownerslist);
         user.setBookList(bookList);
-        Long userId = (Long) session.save(user);
-        System.out.println(userId.toString());
-        /*User user = (User) session.load(User.class, new Long(1));
-        System.out.println(user.toString());*/
-        tx.commit();
+        userService.createUser(user);
+*/
+        System.out.println(userService.getUser(new Long(2)).getBookList().toString());
+        System.out.println(bookService.getBook(new Long(3)).getOwners().toString());
 
-        /*session.close();
-        userDAO.createUser("avmelnyk", "password", "Andrii","Melnyk","email");
-        userDAO.createUser("avmelnyk", "password", "Dima","Melnyk","email");
-        userDAO.createUser("avmelnyk", "password", "Pasha","Melnyk","email");
-        List<User> users = userDAO.listUsers();
-        for (User user: users
-             ) {
-            System.out.println(user.toString());
-        }*/
 
     }
 }

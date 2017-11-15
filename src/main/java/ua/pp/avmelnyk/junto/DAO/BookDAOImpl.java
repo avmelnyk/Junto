@@ -38,9 +38,8 @@ public class BookDAOImpl implements BookDAO{
     public void updateBook(Book book) {
         Transaction tx = session.beginTransaction();
         Book merged = (Book)session.merge(book);
-        session.saveOrUpdate(merged);
+        session.update(merged);
         tx.commit();
-
     }
 
     public void removeBook(Long book_id) {
@@ -54,17 +53,15 @@ public class BookDAOImpl implements BookDAO{
 
     @SuppressWarnings("unchecked")
     public List<Book> listBooks() {
-        List<Book> bookList = null;
-        Transaction tx = session.beginTransaction();
-         try {
-             bookList = session.createCriteria(Book.class).list();
-             tx.commit();
-         }
-
-         catch (RuntimeException e){
-             session.getTransaction().rollback();
-         }
-
+         List<Book> bookList = null;
+             try {
+                 Transaction tx = session.beginTransaction();
+                 bookList = session.createCriteria(Book.class).list();
+                 tx.commit();
+             }
+             catch (RuntimeException e){
+                 session.getTransaction().rollback();
+             }
         return bookList;
 
     }

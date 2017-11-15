@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: avmelnyk
@@ -11,19 +12,18 @@
     <title>Junto</title>
 </head>
 <body>
-    <h1> Book name </h1>
-    <h2> Author</h2>
-    <h2> ISBN </h2>
-    <h2> Genre </h2>
-    <h2> Rating </h2>
-        <ol>
-            <li>Owner</li>
-            <li>Owner</li>
-            <li>Owner</li>
-            <li>Owner</li>
-            <li>Owner</li>
-            <li>Owner</li>
-            <li>Owner</li>
-        </ol>
+    <h1> Book name: ${book.name} </h1>
+    <h2> Author: ${book.author}</h2>
+    <h2> ISBN: ${book.ISBN}</h2>
+    <h2> Genre: ${book.genre} </h2>
+    <h2> Rating: </h2>
+        <table>
+            <th>Owners:</th>
+            <c:forEach var="owner" items="${book.owners}">
+                <tr>
+                    <td><a href="/user/${owner.userID}"><c:out value="${owner.firstName} ${owner.lastName}"/></a></td>
+                </tr>
+            </c:forEach>
+        </table>
 </body>
 </html>

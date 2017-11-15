@@ -63,9 +63,11 @@ public class JuntoController {
     }
 
     @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
-    public String getBook(@PathVariable("id")int book_id, Model model){
-        Book book;
-        return "book";
+    public String getBook(@PathVariable("id")Long book_id, Model model){
+        Book book = bookService.getBook(book_id);
+        System.out.println(book.getOwners().size());
+        model.addAttribute(book);
+        return "/book";
     }
 
 }

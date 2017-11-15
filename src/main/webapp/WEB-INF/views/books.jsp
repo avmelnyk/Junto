@@ -17,10 +17,11 @@
     <table>
     <c:forEach var="book"  items="${bookList}">
         <tr>
-            <td><c:out value="${book.name}"/></td>
+            <td><a href="/book/${book.bookID}"><c:out value="${book.name}"/></a></td>
             <td><c:out value="${book.author}"/></td>
             <td><c:out value="${book.genre}"/></td>
             <td><c:out value="${book.ISBN}"/></td>
+            <td><a href="/">Edit</a></td>
         </tr>
     </c:forEach>
     </table>

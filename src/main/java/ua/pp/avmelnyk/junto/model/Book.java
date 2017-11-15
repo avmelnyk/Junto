@@ -91,7 +91,6 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", ISBN=" + ISBN +
                 ", genre='" + genre + '\'' +
-                ", owners=" + owners +
                 '}';
     }
 }
