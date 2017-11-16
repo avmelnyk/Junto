@@ -1,5 +1,7 @@
+<%@ page isELIgnored="false" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: avmelnyk
@@ -13,7 +15,7 @@
 </head>
 <body>
         <table>
-            <form:form action="/user/${user.userID}/book" method="POST" modelAttribute="book" acceptCharset="UTF-8">
+            <form:form action="/user/${user.userID}/book" method="POST" modelAttribute="book" >
                 <tr>
                     <td><form:label path="name">Name:</form:label>
                         <form:input path="name" type="text"></form:input>

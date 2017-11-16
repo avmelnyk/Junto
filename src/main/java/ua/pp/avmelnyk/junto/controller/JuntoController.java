@@ -51,7 +51,9 @@ public class JuntoController {
         return "editUser";
     }
     @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") User user){
+    public String editUser(@ModelAttribute("user")User user){
+        List<Book> bookList = userService.getUser(user.getUserID()).getBookList();
+        user.setBookList(bookList);
         userService.updateUser(user);
         return "redirect:/user/"+user.getUserID().toString();
     }
