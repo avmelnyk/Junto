@@ -12,6 +12,7 @@ import ua.pp.avmelnyk.junto.DAO.UserServiceImpl;
 import ua.pp.avmelnyk.junto.model.Book;
 import ua.pp.avmelnyk.junto.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,7 +45,7 @@ public class JuntoController {
         return "redirect:/user/"+user_ID.toString();
     }
     @RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
-    public String editUser(@PathVariable("id")Long userID, Model model){
+    public String getEditUserForm(@PathVariable("id")Long userID, Model model){
         User user = userService.getUser(userID);
         model.addAttribute(user);
         return "editUser";
@@ -53,6 +54,26 @@ public class JuntoController {
     public String editUser(@ModelAttribute("user") User user){
         userService.updateUser(user);
         return "redirect:/user/"+user.getUserID().toString();
+    }
+
+    @RequestMapping(value = "/user/{id}/book", method = RequestMethod.GET)
+    public String getAddBookForm(@PathVariable("id")Long userID, Model model){
+        User user = userService.getUser(userID);
+        Book book = new Book();
+        model.addAttribute(user);
+        model.addAttribute(book);
+        return "addNewBook";
+    }
+    @RequestMapping(value = "user/{id}/book", method = RequestMethod.POST)
+    public String addNewBook(@PathVariable("id")Long userID, @ModelAttribute("book") Book book){
+        User user = userService.getUser(userID);
+        List<User>owners = new ArrayList<User>();
+        book.setOwners(owners);
+        book.getOwners().add(user);
+        user.getBookList().add(book);
+        userService.updateUser(user);
+        return "redirect:/user/"+userID;
+
     }
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)

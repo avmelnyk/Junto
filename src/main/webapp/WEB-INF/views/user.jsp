@@ -18,6 +18,7 @@
     <h3> ${user.firstName} ${user.lastName}</h3>
     <h3>Email: ${user.email}</h3>
     <h3>Books</h3>
+    <a href="/user/${user.userID}/book">add new book</a>
     <table>
         <th>Name</th>
         <th>Author</th>
