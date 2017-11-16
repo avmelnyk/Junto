@@ -93,4 +93,19 @@ public class Book {
                 ", genre='" + genre + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return bookID.equals(book.bookID);
+    }
+
+    @Override
+    public int hashCode() {
+        return bookID.hashCode();
+    }
 }
