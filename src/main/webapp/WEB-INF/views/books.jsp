@@ -21,7 +21,6 @@
             <td><c:out value="${book.author}"/></td>
             <td><c:out value="${book.genre}"/></td>
             <td><c:out value="${book.ISBN}"/></td>
-            <td><a href="/">Edit</a></td>
         </tr>
     </c:forEach>
     </table>

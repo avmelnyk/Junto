@@ -30,6 +30,8 @@
                 <td><c:out value="${book.author}"/></td>
                 <td><c:out value="${book.genre}"/></td>
                 <td><c:out value="${book.ISBN}"/></td>
+                <td><a href="/user/${user.userID}/editbook/${book.bookID}">Edit</a></td>
+                <td><a href="/user/${user.userID}/book/${book.bookID}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

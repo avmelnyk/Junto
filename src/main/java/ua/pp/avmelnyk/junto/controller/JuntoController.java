@@ -66,6 +66,7 @@ public class JuntoController {
         model.addAttribute(book);
         return "addNewBook";
     }
+
     @RequestMapping(value = "user/{id}/book", method = RequestMethod.POST)
     public String addNewBook(@PathVariable("id")Long userID, @ModelAttribute("book") Book book){
         User user = userService.getUser(userID);
@@ -75,8 +76,33 @@ public class JuntoController {
         user.getBookList().add(book);
         userService.updateUser(user);
         return "redirect:/user/"+userID;
-
     }
+
+    @RequestMapping(value = "user/{user_id}/editbook/{book_id}", method = RequestMethod.GET)
+    public String getEditBookForm(@PathVariable(value = "user_id")Long user_id, @PathVariable(value = "book_id")Long book_id, Model model ){
+        User user = userService.getUser(user_id);
+        Book book = bookService.getBook(book_id);
+        model.addAttribute(book);
+        model.addAttribute(user);
+        return "editBook";
+    }
+
+    @RequestMapping(value = "user/{user_id}/editbook/{book_id}", method = RequestMethod.POST)
+    public String edtitBook(@ModelAttribute("book")Book book, @PathVariable(value = "user_id") Long user_id){
+        User user = userService.getUser(user_id);
+        List<Book>bookList = user.getBookList();
+        for (int i = 0; i < bookList.size();i++){
+            if (bookList.get(i).equals(book)){
+                book.setOwners(bookList.get(i).getOwners());
+                bookList.set(i, book);
+            }
+        }
+        user.setBookList(bookList);
+        bookService.updateBook(book);
+        userService.updateUser(user);
+        return "redirect:/user/"+user_id;
+    }
+
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public String getBooks(Model model){
@@ -88,7 +114,6 @@ public class JuntoController {
     @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
     public String getBook(@PathVariable("id")Long book_id, Model model){
         Book book = bookService.getBook(book_id);
-        System.out.println(book.getOwners().size());
         model.addAttribute(book);
         return "/book";
     }
