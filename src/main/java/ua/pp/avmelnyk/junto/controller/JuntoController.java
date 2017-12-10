@@ -41,6 +41,7 @@ public class JuntoController {
     }
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String createNewUser(@ModelAttribute("user") User user){
+        user.setBookList(new ArrayList<Book>());
         Long user_ID = userService.createUser(user);
         return "redirect:/user/"+user_ID.toString();
     }
@@ -87,7 +88,7 @@ public class JuntoController {
         return "editBook";
     }
 
-    @RequestMapping(value = "user/{user_id}/editbook/{book_id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{user_id}/editbook/{book_id}", method = RequestMethod.POST)
     public String edtitBook(@ModelAttribute("book")Book book, @PathVariable(value = "user_id") Long user_id){
         User user = userService.getUser(user_id);
         List<Book>bookList = user.getBookList();
@@ -99,6 +100,16 @@ public class JuntoController {
         }
         user.setBookList(bookList);
         bookService.updateBook(book);
+        userService.updateUser(user);
+        return "redirect:/user/"+user_id;
+    }
+    @RequestMapping(value = "/user/{user_id}/deletebook/{book_id}", method = RequestMethod.GET)
+    public String deleteBook(@PathVariable(value = "user_id")Long user_id, @PathVariable(value = "book_id")Long book_id){
+        User user = userService.getUser(user_id);
+        List<Book>bookList =  user.getBookList();
+        if(bookList.contains(bookService.getBook(book_id))){
+            bookList.remove(bookService.getBook(book_id));
+        }
         userService.updateUser(user);
         return "redirect:/user/"+user_id;
     }

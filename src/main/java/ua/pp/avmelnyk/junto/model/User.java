@@ -1,5 +1,7 @@
 package ua.pp.avmelnyk.junto.model;
 
+import org.hibernate.annotations.Cascade;
+
 import java.util.List;
 import javax.persistence.*;
 
@@ -25,7 +27,12 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="owners")
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "USER_BOOK",
+            joinColumns = { @JoinColumn(name = "USER_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "BOOK_ID") }
+    )
     private List<Book> bookList;
 
     public User() {

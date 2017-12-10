@@ -17,12 +17,8 @@ public class Book {
     private Long ISBN;
     @Column(name = "GENRE")
     private String genre;
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(
-            name = "USER_BOOK",
-            joinColumns = { @JoinColumn(name = "BOOK_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "USER_ID") }
-    )
+
+    @ManyToMany(mappedBy = "bookList")
     private List<User> owners;
 
     public Book() {
