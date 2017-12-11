@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan("ua.pp.avmelnyk.junto")
 public class WebConfig extends WebMvcConfigurerAdapter {
+
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver =
@@ -23,6 +24,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
+
     @Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
