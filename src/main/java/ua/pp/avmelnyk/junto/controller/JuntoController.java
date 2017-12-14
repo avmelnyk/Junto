@@ -3,15 +3,20 @@ package ua.pp.avmelnyk.junto.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
 import ua.pp.avmelnyk.junto.DAO.BookServiceImpl;
 import ua.pp.avmelnyk.junto.DAO.UserServiceImpl;
+import ua.pp.avmelnyk.junto.DTO.UserDTO;
 import ua.pp.avmelnyk.junto.model.Book;
 import ua.pp.avmelnyk.junto.model.User;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +40,17 @@ public class JuntoController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegistrationForm(Model model){
-        User user = new User();
+        UserDTO user = new UserDTO();
         model.addAttribute(user);
         return "registration";
     }
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String createNewUser(@ModelAttribute("user") User user){
-        user.setBookList(new ArrayList<Book>());
-        Long user_ID = userService.createUser(user);
-        return "redirect:/user/"+user_ID.toString();
+    public String createNewUser(@ModelAttribute("user") @Valid UserDTO user, BindingResult result, WebRequest request, Errors errors){
+
+        //user.setBookList(new ArrayList<Book>());
+        //Long user_ID = userService.createUser(user);
+        //return "redirect:/user/"+user_ID.toString();
+        return "/";
     }
     @RequestMapping(value = "/edituser/{id}", method = RequestMethod.GET)
     public String getEditUserForm(@PathVariable("id")Long userID, Model model){

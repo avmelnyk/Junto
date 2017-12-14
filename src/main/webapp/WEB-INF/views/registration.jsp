@@ -13,11 +13,7 @@
     <title>Junto</title>
 </head>
 <body>
-<form:form name="addUser" action="/user"  method="POST"  modelAttribute="user" acceptCharset="UTF-8">
-    <p>
-        <form:label path="username">Username</form:label>
-        <form:input path="username"/>
-    </p>
+<form:form name="addUser" action="/user"  method="POST"  modelAttribute="userDTO" acceptCharset="UTF-8">
     <p>
         <form:label path="password">Password</form:label>
         <form:input path="password" type= "password"/>
